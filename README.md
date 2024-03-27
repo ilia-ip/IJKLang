@@ -19,4 +19,6 @@ And my compiler includes some flags:
 * `-D` debug mode (to many debug prints, do not use it please)
 * `-H` help<br />
 At all, command will look like this:
+## What is "pycolors.py"?
+it's handmade colored console output, yes it's should be a library but i dont want to make it) That why it here.
 `py IJKLang.py -f input.ijk -o output.exe -L`
