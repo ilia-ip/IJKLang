@@ -158,5 +158,3 @@ class IJKParser:
         if not 'main' in self.functions:
             raise ValueError('<main> function not found!')
         return self.parseFunctions('main')
-
-# TODO: починить переменные и принт! добавить чикл и иф-елсе!
