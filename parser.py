@@ -144,9 +144,23 @@ class IJKParser:
             wline = self.cut(line, 0)
             if wline == self.cases['function'][0]:
                 lline = self.cut(line, 1)
-                fp1 = text.index([['op3', '{']], text.index(line)) + 1
-                fp2 = text.index([['cp3', '}']], text.index(line))
-                self.functions[lline[1]] = text[fp1:fp2:]
+                parens = 0
+                mi = 0
+                for cline in text[text.index(line)+1::]:
+                    mi += 1
+                    if self.debug:
+                        print('Function capture: ', cline, parens)
+                    if self.cut(cline,0) == ['op3']:
+                        parens += 1
+                        if parens == 1:
+                            fp1 = mi
+                    elif self.cut(cline, 0) == ['cp3']:
+                        parens -= 1
+                        if parens == 0:
+                            fp2 = mi
+                            self.functions[lline[1]] = text[fp1+1:fp2-1:]
+                            break
+
 
     def parse(self, text):
         if self.debug:
